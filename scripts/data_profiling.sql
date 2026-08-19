@@ -23,7 +23,7 @@ SELECT [transaction_id]
       ,[fraud_flag]
   FROM [fraud_analytics_stg].[dbo].[banking_transactions]
 
-  -- count the null values contained in each column
+  -- check for missing values in each column
   SELECT 
    SUM(CASE WHEN transaction_id IS NULL THEN 1 ELSE 0 END) AS [transaction_id_nulls],
     SUM(CASE WHEN transaction_amount IS NULL THEN 1 ELSE 0 END) AS [transaction_amount_nulls],
@@ -47,4 +47,17 @@ SELECT [transaction_id]
 
   FROM [fraud_analytics_stg].[dbo].[banking_transactions]
 
-  -- count 
+ -- check for duplicate rows based on all columns
+  SELECT 
+    COUNT(*) AS total_rows,
+    COUNT(DISTINCT transaction_id) AS unique_transaction_ids,
+    COUNT(*) - COUNT(DISTINCT transaction_id) AS duplicate_transaction_ids
+  FROM [fraud_analytics_stg].[dbo].[banking_transactions]
+
+  -- check for duplicate rows based on specific columns 
+  SELECT transaction_id, transaction_amount, login_attempts, COUNT(*)
+ FROM [fraud_analytics_stg].[dbo].[banking_transactions]
+GROUP BY transaction_id, transaction_amount, login_attempts
+HAVING COUNT(*) > 1;
+
+      
