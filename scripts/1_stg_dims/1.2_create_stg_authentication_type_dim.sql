@@ -1,14 +1,22 @@
-/* create dim_authentication_type table staging*/
+-- Create the authentication staging table
+USE [fraud_analytics_stg];
 
--- dim_authentication_type dimension table staging
-IF OBJECT_ID('[fraud_analytics_stg].[dbo].[dim_authentication_type_stg]', 'U') IS NULL
 
-CREATE TABLE [fraud_analytics_stg].[dbo].[dim_authentication_type_stg] 
-	([authentication_type] NVARCHAR (100));
+IF OBJECT_ID('[dbo].[dim_authentication_type_stg]', 'U') IS NOT NULL BEGIN
+DROP TABLE
+  [dbo].[dim_authentication_type_stg];
 
-INSERT INTO [fraud_analytics_stg].[dbo].[dim_authentication_type_stg] 
-	( [authentication_type])
 
-SELECT 
-	[authentication_type]
-FROM [fraud_analytics_stg].[dbo].[banking_transactions];
+END;
+
+
+CREATE TABLE
+  [dbo].[dim_authentication_type_stg] ([authentication_type] NVARCHAR(100));
+
+
+INSERT INTO
+  [dbo].[dim_authentication_type_stg] ([authentication_type])
+SELECT
+  [authentication_type]
+FROM
+  [dbo].[banking_transactions];
