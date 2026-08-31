@@ -2,11 +2,11 @@
 USE [fraud_analytics_dw];
 
 
-TRUNCATE TABLE [dbo].[dim_authentication_type_clean];
+TRUNCATE TABLE [dbo].[dim_authentication_type_dw];
 
 
 INSERT INTO
-  [dbo].[dim_authentication_type_clean] ([authentication_type])
+  [dbo].[dim_authentication_type_dw] ([authentication_type])
 SELECT
   [authentication_type]
 FROM

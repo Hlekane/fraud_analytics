@@ -2,11 +2,11 @@
 USE [fraud_analytics_dw];
 
 
-TRUNCATE TABLE [dbo].[fact_banking_transactions_clean];
+TRUNCATE TABLE [dbo].[fact_banking_transactions_dw];
 
 
 INSERT INTO
-  [dbo].[fact_banking_transactions_clean] (
+  [dbo].[fact_banking_transactions_dw] (
     [transaction_id],
     [payment_channel_id],
     [authentication_type_id],
@@ -52,6 +52,6 @@ SELECT
 FROM
   [fraud_analytics_stg].[dbo].[fact_banking_transactions_clean] AS f
   INNER JOIN [fraud_analytics_stg].[dbo].[dim_payment_channel_clean] AS sp ON f.[payment_channel_id] = sp.[payment_channel_id]
-  INNER JOIN [dbo].[dim_payment_channel_clean] AS p ON sp.[payment_channel] = p.[payment_channel]
+  INNER JOIN [dbo].[dim_payment_channel_dw] AS p ON sp.[payment_channel] = p.[payment_channel]
   INNER JOIN [fraud_analytics_stg].[dbo].[dim_authentication_type_clean] AS sa ON f.[authentication_type_id] = sa.[authentication_type_id]
-  INNER JOIN [dbo].[dim_authentication_type_clean] AS a ON sa.[authentication_type] = a.[authentication_type];
+  INNER JOIN [dbo].[dim_authentication_type_dw] AS a ON sa.[authentication_type] = a.[authentication_type];
