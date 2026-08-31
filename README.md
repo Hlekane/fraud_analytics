@@ -31,24 +31,24 @@ I built the pipeline using a staged warehouse approach. The raw data is first pr
 
 ## Folder structure
 
-- scripts/
+- scripts
   - 0.0_create_databases.sql
   - 0.1_data_profiling.sql
   - 0.2_column grouping.sql
-  - 1_stg_dims/
+  - 1_stg_dims
     - 1.1_create_stg_payment_dim.sql
     - 1.2_create_stg_authentication_type_dim.sql
     - 1.3_load_dim_payment_channel_stg.sql
     - 1.4_load_dim_authentication_type_stg.sql
-  - 2_stg_clean_dims/
+  - 2_stg_clean_dims
     - 2.1_create_clean_payment_dim_stg.sql
     - 2.2_create_clean_authentication_type_dim_stg.sql
     - 2.3_create_clean_fact_banking_transactions.sql
-  - 3_load_stg_clean_dims/
+  - 3_load_stg_clean_dims
     - 3.1_load_dim_payment_channel_clean.sql
     - 3.2_load_dim_authentication_type_clean.sql
     - 3.3_load_banking_fact_transactions_clean.sql
-  - 4_dw_dims/
+  - 4_dw_dims
     - 4.1_create_dw_payment_dim.sql
     - 4.2_create_dw_authentication_type_dim.sql
     - 4.3_create_dw_fact_banking_transactions.sql
@@ -56,13 +56,13 @@ I built the pipeline using a staged warehouse approach. The raw data is first pr
     - 5.1_load_dw_payment_dim.sql
     - 5.2_load_dw_authentication_type_dim.sql
     - 5.3_load_dw_fact_banking_transactions.sql
-  - 6_analysis/
+  - 6_analysis
     - 5.1_fraud_summary.sql
     - 5.2_validate_dw.sql
     - 5.3_key_business_questions.sql
-- dataset/
+- dataset
   - banking_transactions.csv
-- documentation/
+- documentation
 - README.md
 
 ## Data model
