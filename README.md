@@ -52,7 +52,7 @@ I built the pipeline using a staged warehouse approach. The raw data is first pr
     - 4.1_create_dw_payment_dim.sql
     - 4.2_create_dw_authentication_type_dim.sql
     - 4.3_create_dw_fact_banking_transactions.sql
-  - 5_load_dw_dim/
+  - 5_load_dw_dim
     - 5.1_load_dw_payment_dim.sql
     - 5.2_load_dw_authentication_type_dim.sql
     - 5.3_load_dw_fact_banking_transactions.sql
