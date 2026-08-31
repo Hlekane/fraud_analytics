@@ -1,4 +1,5 @@
 # Project: Fraud Detection & Risk Analytics Pipeline
+
 ### Purpose
 
 The purpose of this project is to build an end-to-end data engineering pipeline for banking fraud detection and transaction risk analytics.
@@ -61,24 +62,11 @@ The project will focus specifically on transaction-level fraud and risk analytic
 The analytical solution should ultimately help answer questions such as:
 
 ### Fraud
-What proportion of transactions are fraudulent?
-How many fraudulent transactions occur?
-Which transactions exhibit the highest concentration of risk indicators?
-Which characteristics are most commonly associated with fraudulent transactions?
-### Financial Risk
-What is the total value of fraudulent transactions?
-What is the average value of fraudulent transactions?
-What percentage of total transaction value is associated with fraud?
-Which transaction channels contribute the greatest financial exposure?
-### Channel & Authentication Risk
-Which payment channels have the highest fraud rates?
-Which authentication methods are associated with higher fraud rates?
-Are international transactions associated with higher fraud rates?
-Are card-present and card-not-present transactions associated with different levels of risk?
-### Behavioural & Risk Indicators
-Are higher device-risk scores associated with fraudulent transactions?
-Are higher anomaly scores associated with fraud?
-Does transaction velocity differ between fraudulent and legitimate transactions?
-Are suspicious IP transactions more likely to be fraudulent?
-Are higher login attempts associated with fraudulent activity?
-Are higher transaction frequencies associated with increased fraud risk?
+
+1. What proportion and total value of transactions are fraudulent?
+2. Which payment channels have the highest fraud rates and financial exposure?
+3. Which authentication methods are most strongly associated with fraudulent transactions?
+4. Are international or card-not-present transactions more likely to be fraudulent?
+5. Are suspicious IP addresses associated with higher fraud rates?
+6. Which behavioural indicators, such as device risk, anomaly score, login attempts, or transaction velocity, are most commonly associated with fraud?
+7. Which individual transactions exhibit the highest concentration of fraud risk indicators and should be prioritised for investigation?
