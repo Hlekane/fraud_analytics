@@ -12,8 +12,6 @@ TRUNCATE TABLE [dbo].[fact_banking_transactions_clean];
 
 
 -- Clean and deduplicate transactions
-;
-
 
 WITH
   DeduplicatedTransactions AS (
@@ -164,8 +162,6 @@ WHERE
   dt.[row_num] = 1
   AND TRY_CONVERT(INT, TRIM(CAST(dt.[transaction_id] AS VARCHAR(50)))) IS NOT NULL;
 
-
 END;
-
-
 GO
+
