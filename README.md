@@ -9,6 +9,7 @@ I built the pipeline using a staged warehouse approach. The raw data is first pr
 ![Fraud analytics architecture](documentation/fraud_analytics_medallion%20architecture.png)
 
 ## Star schema
+<img width="3448" height="2648" alt="image" src="https://github.com/user-attachments/assets/32be8a48-725f-46f4-a157-053ded1a2f3f" />
 
 ## What this project does
 
