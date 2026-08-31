@@ -6,9 +6,9 @@ USE [fraud_analytics_dw];
 SELECT
   'Warehouse tables exist' AS check_name,
   CASE
-    WHEN OBJECT_ID('[dbo].[dim_payment_channel_clean]', 'U') IS NOT NULL
-    AND OBJECT_ID('[dbo].[dim_authentication_type_clean]', 'U') IS NOT NULL
-    AND OBJECT_ID('[dbo].[fact_banking_transactions_clean]', 'U') IS NOT NULL THEN 'PASS'
+    WHEN OBJECT_ID('[dbo].[dim_payment_channel_dw]', 'U') IS NOT NULL
+    AND OBJECT_ID('[dbo].[dim_authentication_type_dw]', 'U') IS NOT NULL
+    AND OBJECT_ID('[dbo].[fact_banking_transactions_dw]', 'U') IS NOT NULL THEN 'PASS'
     ELSE 'FAIL'
   END AS check_result;
 
@@ -18,19 +18,19 @@ SELECT
   'Payment dimension row count' AS check_name,
   COUNT(*) AS row_count
 FROM
-  [dbo].[dim_payment_channel_clean]
+  [dbo].[dim_payment_channel_dw]
 UNION ALL
 SELECT
   'Authentication dimension row count',
   COUNT(*)
 FROM
-  [dbo].[dim_authentication_type_clean]
+  [dbo].[dim_authentication_type_dw]
 UNION ALL
 SELECT
   'Banking fact row count',
   COUNT(*)
 FROM
-  [dbo].[fact_banking_transactions_clean];
+  [dbo].[fact_banking_transactions_dw];
 
 
 -- Check unique transaction IDs
@@ -41,7 +41,7 @@ SELECT
     ELSE 'FAIL'
   END AS check_result
 FROM
-  [dbo].[fact_banking_transactions_clean];
+  [dbo].[fact_banking_transactions_dw];
 
 
 -- Check missing transaction IDs
@@ -52,7 +52,7 @@ SELECT
     ELSE 'FAIL'
   END AS check_result
 FROM
-  [dbo].[fact_banking_transactions_clean]
+  [dbo].[fact_banking_transactions_dw]
 WHERE
   [transaction_id] IS NULL;
 
@@ -65,7 +65,7 @@ SELECT
     ELSE 'FAIL'
   END AS check_result
 FROM
-  [dbo].[fact_banking_transactions_clean]
+  [dbo].[fact_banking_transactions_dw]
 WHERE
   [payment_channel_id] IS NULL
   OR [authentication_type_id] IS NULL;
@@ -79,8 +79,8 @@ SELECT
     ELSE 'FAIL'
   END AS check_result
 FROM
-  [dbo].[fact_banking_transactions_clean] AS f
-  LEFT JOIN [dbo].[dim_payment_channel_clean] AS p ON f.[payment_channel_id] = p.[payment_channel_id]
+  [dbo].[fact_banking_transactions_dw] AS f
+  LEFT JOIN [dbo].[dim_payment_channel_dw] AS p ON f.[payment_channel_id] = p.[payment_channel_id]
 WHERE
   f.[payment_channel_id] IS NOT NULL
   AND p.[payment_channel_id] IS NULL;
@@ -94,8 +94,8 @@ SELECT
     ELSE 'FAIL'
   END AS check_result
 FROM
-  [dbo].[fact_banking_transactions_clean] AS f
-  LEFT JOIN [dbo].[dim_authentication_type_clean] AS a ON f.[authentication_type_id] = a.[authentication_type_id]
+  [dbo].[fact_banking_transactions_dw] AS f
+  LEFT JOIN [dbo].[dim_authentication_type_dw] AS a ON f.[authentication_type_id] = a.[authentication_type_id]
 WHERE
   f.[authentication_type_id] IS NOT NULL
   AND a.[authentication_type_id] IS NULL;
@@ -109,7 +109,7 @@ SELECT
     ELSE 'FAIL'
   END AS check_result
 FROM
-  [dbo].[fact_banking_transactions_clean]
+  [dbo].[fact_banking_transactions_dw]
 WHERE
   [login_attempts] IS NOT NULL
   AND [login_attempts] NOT BETWEEN 0 AND 100;
@@ -123,7 +123,7 @@ SELECT
     ELSE 'FAIL'
   END AS check_result
 FROM
-  [dbo].[fact_banking_transactions_clean]
+  [dbo].[fact_banking_transactions_dw]
 WHERE
   [transaction_time_hour] IS NOT NULL
   AND [transaction_time_hour] NOT BETWEEN 0 AND 23;
@@ -137,7 +137,7 @@ SELECT
     ELSE 'FAIL'
   END AS check_result
 FROM
-  [dbo].[fact_banking_transactions_clean]
+  [dbo].[fact_banking_transactions_dw]
 WHERE
   [fraud_flag] IS NOT NULL
   AND [fraud_flag] NOT IN (0, 1);

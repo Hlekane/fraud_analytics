@@ -26,7 +26,7 @@ SELECT
     END
   ) AS fraud_transaction_value
 FROM
-  [dbo].[fact_banking_transactions_clean];
+  [dbo].[fact_banking_transactions_dw];
 
 
 -- Summarize fraud by payment channel
@@ -48,8 +48,8 @@ SELECT
     ) / NULLIF(COUNT(*), 0) AS DECIMAL(5, 2)
   ) AS fraud_rate_percent
 FROM
-  [dbo].[fact_banking_transactions_clean] AS f
-  LEFT JOIN [dbo].[dim_payment_channel_clean] AS p ON f.[payment_channel_id] = p.[payment_channel_id]
+  [dbo].[fact_banking_transactions_dw] AS f
+  LEFT JOIN [dbo].[dim_payment_channel_dw] AS p ON f.[payment_channel_id] = p.[payment_channel_id]
 GROUP BY
   [payment_channel]
 ORDER BY
@@ -75,8 +75,8 @@ SELECT
     ) / NULLIF(COUNT(*), 0) AS DECIMAL(5, 2)
   ) AS fraud_rate_percent
 FROM
-  [dbo].[fact_banking_transactions_clean] AS f
-  LEFT JOIN [dbo].[dim_authentication_type_clean] AS a ON f.[authentication_type_id] = a.[authentication_type_id]
+  [dbo].[fact_banking_transactions_dw] AS f
+  LEFT JOIN [dbo].[dim_authentication_type_dw] AS a ON f.[authentication_type_id] = a.[authentication_type_id]
 GROUP BY
   [authentication_type]
 ORDER BY
