@@ -2,9 +2,9 @@
 USE [fraud_analytics_dw];
 
 
-IF OBJECT_ID('[dbo].[fact_banking_transactions_clean]', 'U') IS NULL BEGIN
+IF OBJECT_ID('[dbo].[fact_banking_transactions_dw]', 'U') IS NULL BEGIN
 CREATE TABLE
-  [dbo].[fact_banking_transactions_clean] (
+  [dbo].[fact_banking_transactions_dw] (
     [transaction_id] INT NOT NULL PRIMARY KEY,
     [payment_channel_id] INT NULL,
     [authentication_type_id] INT NULL,
