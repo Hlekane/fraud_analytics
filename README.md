@@ -63,6 +63,8 @@ I built the pipeline using a staged warehouse approach. The raw data is first pr
 - dataset
   - banking_transactions.csv
 - documentation
+   - banking_transactions_architecture.csv
+   - banking_transactions_star_schema
 - README.md
 
 ## Data model
