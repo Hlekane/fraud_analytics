@@ -8,6 +8,8 @@ I built the pipeline using a staged warehouse approach. The raw data is first pr
 
 ![Fraud analytics architecture](documentation/fraud_analytics_medallion%20architecture.png)
 
+## Star schema
+
 ## What this project does
 
 - profiles and checks raw banking transaction data
