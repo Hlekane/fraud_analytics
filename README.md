@@ -4,6 +4,10 @@ This project is a SQL Server data engineering solution for banking fraud analyti
 
 I built the pipeline using a staged warehouse approach. The raw data is first profiled and validated, then transformed into cleaned staging tables, and finally loaded into warehouse dimensions and fact tables. The final data is used to answer key fraud and risk questions.
 
+## Architecture
+
+![Fraud analytics architecture](documentation/fraud_analytics_medallion%20architecture.png)
+
 ## What this project does
 
 - profiles and checks raw banking transaction data
